@@ -1,5 +1,7 @@
 package ueb01;
 
+import java.util.NoSuchElementException;
+
 class CharStackImpl implements CharStack {
     private Element first = null;
 
@@ -10,8 +12,11 @@ class CharStackImpl implements CharStack {
     }
 
     @Override
-    public char pop() {
+    public char pop() throws NoSuchElementException {
         Element it = first;
+        if (it == null) {
+            throw new NoSuchElementException();
+        }
         it.back = first;
         return first.value;
     }
